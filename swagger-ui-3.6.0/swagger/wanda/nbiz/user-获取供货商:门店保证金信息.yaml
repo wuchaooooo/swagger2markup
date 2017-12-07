@@ -1,0 +1,123 @@
+swagger: '2.0'
+info:
+  title: nbiz-sale
+  description: 销售模块API
+  version: 1.0.0
+host: localhost
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /user/collateralFunds:
+    get:
+      summary: 平台用户查看供货商/门店保证金详细情况
+      parameters:
+        - name: Authorization
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: userName
+          in: query
+          description: 供货商/门店的名字
+          type: string
+          required: false
+        - name: userType
+          in: query
+          description: 用户类型
+          type: string
+          required: true
+        - name: pageIndex
+          in: query
+          description: 用户pageIndex
+          type: integer
+          required: true
+        - name: pageSize
+          in: query
+          description: 用户pageSize
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UserCollateralFundResp'
+  /user/collateralFundTotalAmount:
+    get:
+      summary: 平台用户查看供货商/门店保证金总额
+      parameters:
+        - name: Authorization
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/CollateralFundTotalAmountResp'    
+definitions:
+  UserCollateralFundData:
+    type: object
+    properties:
+      userNo:
+        type: string
+        description: 用户编号
+      userName:
+        type: string
+        description: 用户名称
+      userType:
+        type: integer
+        description: 用户类型
+      collateralFund: 
+        type: string
+        description: 用户已缴纳保证金金额
+  UserCollateralFundResp:
+    type: object
+    properties:
+      code:
+        type: integer
+        description: 0表示成功成功
+      info: 
+        type: string
+        description: code为0时，显示success，code不为0时，显示错误信息
+      totalSize:
+        type: integer
+        description: 数据库记录总数
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/UserCollateralFundData'
+  CollateralFundTotalAmountData:
+    type: object
+    properties:
+      totalAmount:
+        type: integer
+        description: 供货商和门店用户总数
+      totalCollateralFund: 
+        type: string
+        description: 供货商和门店总保证金金额
+      companyAmount:
+        type: integer
+        description: 供货商用户总数
+      companyCollateralFund:
+        type: string
+        description: 供货商总保证金金额
+      merchantAmount:
+        type: integer
+        description: 门店用户总数
+      merchantCollateralFund:
+        type: string
+        description: 门店总保证金金额
+  CollateralFundTotalAmountResp:
+    type: object
+    properties:
+      code:
+        type: integer
+        description: 0表示成功成功
+      info: 
+        type: string
+        description: code为0时，显示success，code不为0时，显示错误信息
+      data:
+          $ref: '#/definitions/CollateralFundTotalAmountData'

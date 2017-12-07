@@ -1,0 +1,1150 @@
+= 大会员
+
+
+[[_overview]]
+== 概览
+大千帆大会员系统 - 1130 万达车城项目 - 会员卡相关API
+
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 2017-11-28_1
+
+
+=== 联系方式
+[%hardbreaks]
+__名字__ : 王武超 ( 万信 wangwuchao3 )
+__邮箱__ : wangwuchao3@wanda.cn
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:10000
+__方案__ : HTTP
+
+
+=== 标签
+
+* B端--会员卡相关接口 : Member Card Facade Impl
+
+
+=== 生成
+
+* `application/json`
+
+
+
+
+[[_paths]]
+== 资源
+
+[[_5a8ffd7b0ecc913ef9da5d180b916095]]
+=== B端--会员卡相关接口
+Member Card Facade Impl
+
+
+[[_sail_member_cardlogs_get]]
+==== 会员卡操作记录
+....
+GET /sail/member/cardLogs
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4,.^2"]
+|===
+|类型|名称|说明|类型|默认值
+|**Header**|**orgcode** +
+__必填__|组织代码|string|
+|**Header**|**tenantId** +
+__必填__|租户id|string|
+|**Header**|**token** +
+__必填__|用户认证的token|string|
+|**Query**|**cardNo** +
+__可选__|会员卡号|string|
+|**Query**|**cardTypeId** +
+__可选__|会员卡类型id|integer|
+|**Query**|**mobileNo** +
+__可选__|手机号|string|
+|**Query**|**operationDateFrom** +
+__可选__|最早操作日期 yyyy-MM-dd|string|
+|**Query**|**operationDateTo** +
+__可选__|最晚操作日期 yyyy-MM-dd|string|
+|**Query**|**operationMethod** +
+__可选__|操作方式 ( 0:绑定 1:解绑 2:冻结 3:解冻 )|integer|
+|**Query**|**operator** +
+__可选__|操作人|string|
+|**Query**|**pageIndex** +
+__可选__|分页位移|integer|`1`
+|**Query**|**pageSize** +
+__可选__|分页大小|integer|`10`
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_getcardslogsresp,GetCardsLogsResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardLogs
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cardNo" : "string",
+  "cardTypeId" : 0,
+  "mobileNo" : "string",
+  "operationDateFrom" : "string",
+  "operationDateTo" : "string",
+  "operationMethod" : 0,
+  "operator" : "string",
+  "pageIndex" : 0,
+  "pageSize" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : [ {
+    "operationDate" : "string",
+    "operator" : "string",
+    "operationMethod" : 0,
+    "cardName" : "string",
+    "cardKind" : 0,
+    "cardNo" : "string",
+    "mobileNo" : "string",
+    "plazaName" : "string"
+  } ],
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cardtypes_post]]
+==== 会员卡类型新增
+....
+POST /sail/member/cardTypes
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Body**|**postCardType** +
+__必填__|会员卡类型|<<_postcardtypeparam,PostCardTypeParam>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_commonresp,CommonResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardTypes
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "cardKind" : 0,
+  "cardName" : "string",
+  "cardDesc" : "string",
+  "frozenRule" : 0,
+  "thawRule" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : "object",
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cardtypes_get]]
+==== 会员卡类型列表
+....
+GET /sail/member/cardTypes
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Query**|**pageIndex** +
+__可选__|分页位移|integer
+|**Query**|**pageSize** +
+__可选__|分页大小|integer
+|**Query**|**status** +
+__必填__|会员卡类型状态 (0:未启用 1:已启用 2:全部)|integer
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_getcardtypesresp,GetCardTypesResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardTypes
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "pageIndex" : 0,
+  "pageSize" : 0,
+  "status" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : [ {
+    "id" : "string",
+    "kind" : 0,
+    "name" : "string",
+    "description" : "string",
+    "plazaId" : "string",
+    "plazaName" : "string",
+    "createUserName" : "string",
+    "createUserId" : "string",
+    "createTime" : "string",
+    "updateUserName" : "string",
+    "updateUserId" : "string",
+    "updateTime" : "string",
+    "tenantId" : 0,
+    "status" : 0,
+    "frozenRule" : 0,
+    "thawRule" : 0
+  } ],
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cardtypes_id_post]]
+==== 会员卡类型修改
+....
+POST /sail/member/cardTypes/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Path**|**id** +
+__必填__|会员卡类型id|integer (int64)
+|**Body**|**putCardType** +
+__必填__|会员卡类型|<<_putcardtypeparam,PutCardTypeParam>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_commonresp,CommonResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardTypes/0
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "cardDesc" : "string",
+  "frozenRule" : 0,
+  "thawRule" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : "object",
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cardtypes_id_latestcardno_get]]
+==== 获取指定会员卡（虚拟卡）类型的最新生成卡号
+....
+GET /sail/member/cardTypes/{id}/latestCardNo
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Path**|**id** +
+__必填__|会员卡类型id|integer (int64)
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_getcardtypelatestcardnoresp,GetCardTypeLatestCardNoResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardTypes/0/latestCardNo
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : {
+    "cardTypeId" : "string",
+    "latestCardNo" : "string"
+  },
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cardtypes_id_status_post]]
+==== 会员卡类型状态更新
+....
+POST /sail/member/cardTypes/{id}/status
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Path**|**id** +
+__必填__|会员卡类型id|integer (int64)
+|**Body**|**status** +
+__必填__|会员卡类型状态|<<_postcardtypestatusparam,PostCardTypeStatusParam>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_commonresp,CommonResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cardTypes/0/status
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "status" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : "object",
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cards_post]]
+==== 会员的会员卡绑定
+....
+POST /sail/member/cards
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Body**|**card** +
+__必填__|会员的会员卡信息|<<_postcardparam,PostCardParam>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_commonresp,CommonResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cards
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "cardId" : 0,
+  "cardNo" : "string",
+  "memberId" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : "object",
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cards_get]]
+==== 会员的会员卡查询
+....
+GET /sail/member/cards
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Query**|**cardNo** +
+__可选__|会员卡号|string
+|**Query**|**memberId** +
+__可选__|会员id|integer (int64)
+|**Query**|**mobileNo** +
+__可选__|会员手机号|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_getcardresp,GetCardResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cards
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "cardNo" : "string",
+  "memberId" : 0,
+  "mobileNo" : "string"
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : {
+    "id" : "string",
+    "memberId" : "string",
+    "cardKind" : 0,
+    "cardName" : "string",
+    "cardNo" : "string",
+    "status" : 0,
+    "memberName" : "string",
+    "mobileNo" : "string",
+    "certificateType" : "string",
+    "certificateCode" : "string",
+    "registrationDateTime" : "string",
+    "registrationPlazaName" : "string"
+  },
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+[[_sail_member_cards_id_status_post]]
+==== 会员的会员卡状态更新
+....
+POST /sail/member/cards/{id}/status
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Header**|**orgcode** +
+__必填__|组织代码|string
+|**Header**|**tenantId** +
+__必填__|租户id|string
+|**Header**|**token** +
+__必填__|用户认证的token|string
+|**Path**|**id** +
+__必填__|会员的会员卡id|integer (int64)
+|**Body**|**status** +
+__必填__|会员的会员卡状态|<<_postcardstatusparam,PostCardStatusParam>>
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|<<_commonresp,CommonResp>>
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/member/cards/0/status
+----
+
+
+====== 请求 header
+[source,json]
+----
+"string"
+----
+
+
+====== 请求 body
+[source,json]
+----
+{
+  "status" : 0
+}
+----
+
+
+===== HTTP响应示例
+
+====== 响应 200
+[source,json]
+----
+{
+  "status" : "string",
+  "message" : "string",
+  "data" : "object",
+  "_metadata" : {
+    "totalCount" : 0,
+    "pageIndex" : 0,
+    "pageSize" : 0
+  }
+}
+----
+
+
+
+
+[[_definitions]]
+== 定义
+
+[[_commonresp]]
+=== CommonResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|数据内容 +
+**样例** : `"object"`|object
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcarddata]]
+=== GetCardData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardKind** +
+__可选__|卡种类 0:虚拟卡 1:实体卡 +
+**样例** : `0`|integer
+|**cardName** +
+__可选__|会员卡名称 +
+**样例** : `"string"`|string
+|**cardNo** +
+__可选__|会员卡号 +
+**样例** : `"string"`|string
+|**certificateCode** +
+__可选__|证件号码 +
+**样例** : `"string"`|string
+|**certificateType** +
+__可选__|证件类型 +
+**样例** : `"string"`|string
+|**id** +
+__可选__|会员的会员卡id +
+**样例** : `"string"`|string
+|**memberId** +
+__可选__|会员id +
+**样例** : `"string"`|string
+|**memberName** +
+__可选__|会员姓名 +
+**样例** : `"string"`|string
+|**mobileNo** +
+__可选__|手机号 +
+**样例** : `"string"`|string
+|**registrationDateTime** +
+__可选__|注册会员时间 +
+**样例** : `"string"`|string
+|**registrationPlazaName** +
+__可选__|注册会员来源广场 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|卡状态 (0:未绑定 1:已绑定 2:冻结) +
+**样例** : `0`|integer
+|===
+
+
+[[_getcardlogdata]]
+=== GetCardLogData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardKind** +
+__可选__|会员卡种类 0:虚拟卡 1:实体卡 +
+**样例** : `0`|integer
+|**cardName** +
+__可选__|会员卡名称 +
+**样例** : `"string"`|string
+|**cardNo** +
+__可选__|会员卡号 +
+**样例** : `"string"`|string
+|**mobileNo** +
+__可选__|手机号 +
+**样例** : `"string"`|string
+|**operationDate** +
+__可选__|操作时间 +
+**样例** : `"string"`|string (yyyy-MM-dd HH:mm:ss)
+|**operationMethod** +
+__可选__|操作方式 ( 0:绑定 1:解绑 2:冻结 3:解冻 ) +
+**样例** : `0`|integer
+|**operator** +
+__可选__|操作人 +
+**样例** : `"string"`|string
+|**plazaName** +
+__可选__|广场名字 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardresp]]
+=== GetCardResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|**样例** : `"<<_getcarddata>>"`|<<_getcarddata,GetCardData>>
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardtypedata]]
+=== GetCardTypeData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**createTime** +
+__可选__|创建时间 +
+**样例** : `"string"`|string (yyyy-MM-dd HH:mm:ss)
+|**createUserId** +
+__可选__|创建人id +
+**样例** : `"string"`|string
+|**createUserName** +
+__可选__|创建人姓名 +
+**样例** : `"string"`|string
+|**description** +
+__可选__|会员卡描述 +
+**样例** : `"string"`|string
+|**frozenRule** +
+__可选__|无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年) +
+**样例** : `0`|integer
+|**id** +
+__可选__|会员卡类型id +
+**样例** : `"string"`|string
+|**kind** +
+__可选__|会员卡种类 0:虚拟卡 1:实体卡 +
+**样例** : `0`|integer
+|**name** +
+__可选__|会员卡名称 +
+**样例** : `"string"`|string
+|**plazaId** +
+__可选__|所属广场id +
+**样例** : `"string"`|string
+|**plazaName** +
+__可选__|所属广场名称 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态 (0:未启用 1:已启用 -1:删除) +
+**样例** : `0`|integer
+|**tenantId** +
+__可选__|租户id +
+**样例** : `0`|integer (int64)
+|**thawRule** +
+__可选__|卡解冻规则 (0:无 1:消费自动解冻) +
+**样例** : `0`|integer
+|**updateTime** +
+__可选__|修改时间 +
+**样例** : `"string"`|string (yyyy-MM-dd HH:mm:ss)
+|**updateUserId** +
+__可选__|修改人id +
+**样例** : `"string"`|string
+|**updateUserName** +
+__可选__|修改人姓名 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardtypelatestcardnodata]]
+=== GetCardTypeLatestCardNoData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardTypeId** +
+__可选__|会员卡类型id +
+**样例** : `"string"`|string
+|**latestCardNo** +
+__可选__|最新的卡号 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardtypelatestcardnoresp]]
+=== GetCardTypeLatestCardNoResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|**样例** : `"<<_getcardtypelatestcardnodata>>"`|<<_getcardtypelatestcardnodata,GetCardTypeLatestCardNoData>>
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardtypesresp]]
+=== GetCardTypesResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|**样例** : `[ "<<_getcardtypedata>>" ]`|< <<_getcardtypedata,GetCardTypeData>> > array
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getcardslogsresp]]
+=== GetCardsLogsResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|**样例** : `[ "<<_getcardlogdata>>" ]`|< <<_getcardlogdata,GetCardLogData>> > array
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_metadata]]
+=== MetaData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**pageIndex** +
+__可选__|分页Index +
+**样例** : `0`|integer
+|**pageSize** +
+__可选__|分页Size +
+**样例** : `0`|integer
+|**totalCount** +
+__可选__|记录总数 +
+**样例** : `0`|integer (int64)
+|===
+
+
+[[_postcardparam]]
+=== PostCardParam
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardId** +
+__必填__|会员卡类型id +
+**样例** : `0`|integer (int64)
+|**cardNo** +
+__必填__|会员的会员卡号 +
+**样例** : `"string"`|string
+|**memberId** +
+__必填__|会员id +
+**样例** : `0`|integer (int64)
+|===
+
+
+[[_postcardstatusparam]]
+=== PostCardStatusParam
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**status** +
+__必填__|会员的会员卡状态 ( 0:销卡 1:解冻 2:冻结 ) +
+**样例** : `0`|integer
+|===
+
+
+[[_postcardtypeparam]]
+=== PostCardTypeParam
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardDesc** +
+__可选__|会员卡说明 +
+**样例** : `"string"`|string
+|**cardKind** +
+__可选__|会员卡种类 (0:虚拟卡 1:实体卡) +
+**样例** : `0`|integer
+|**cardName** +
+__可选__|会员卡名称 +
+**样例** : `"string"`|string
+|**frozenRule** +
+__可选__|无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年) +
+**样例** : `0`|integer
+|**thawRule** +
+__可选__|卡解冻规则 (0:无 1:消费自动解冻) +
+**样例** : `0`|integer
+|===
+
+
+[[_postcardtypestatusparam]]
+=== PostCardTypeStatusParam
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**status** +
+__必填__|会员卡类型状态 ( 1:启用 2:删除 ) +
+**样例** : `0`|integer
+|===
+
+
+[[_putcardtypeparam]]
+=== PutCardTypeParam
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**cardDesc** +
+__可选__|会员卡说明 +
+**样例** : `"string"`|string
+|**frozenRule** +
+__可选__|无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年) +
+**样例** : `0`|integer
+|**thawRule** +
+__可选__|卡解冻规则 (0:无 1:消费自动解冻) +
+**样例** : `0`|integer
+|===
+
+
+
+
+

@@ -1,0 +1,1283 @@
+= 大会员
+
+
+[[_overview]]
+== 概览
+大千帆大会员系统 - 印力集团项目 - 积分管理相关API
+
+
+=== 版本信息
+[%hardbreaks]
+__版本__ : 2017-12-05_1
+
+
+=== 联系方式
+[%hardbreaks]
+__名字__ : 王武超
+__邮箱__ : wangwuchao3@gmail.com
+
+
+=== URI scheme
+[%hardbreaks]
+__域名__ : localhost:10000
+__方案__ : HTTP
+
+
+=== 标签
+
+* B端--例外积分规则
+* B端--加速积分规则
+* B端--基础积分规则
+* B端--抵现积分规则
+* B端--积分报表
+* B端--积分有效期
+* B端--积分流水
+* B端--积分补录
+* B端--积分账户
+
+
+=== 生成
+
+* `application/json`
+
+
+
+
+[[_paths]]
+== 资源
+
+[[_84000d9f4bb23cf40b8ec956c5e85a17]]
+=== B端--例外积分规则
+
+[[_sail_point_right_exception_post]]
+==== 新增例外积分规则
+....
+POST /sail/point/right/exception
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exception
+----
+
+
+[[_sail_point_right_exception_get]]
+==== 获取例外积分规则列表
+....
+GET /sail/point/right/exception
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exception
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_1df7847b820db670a39cdf22055ffed0]]
+=== B端--加速积分规则
+
+[[_sail_point_right_acceleration_post]]
+==== 新增加速积分规则
+....
+POST /sail/point/right/acceleration
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration
+----
+
+
+[[_sail_point_right_acceleration_get]]
+==== 获取加速积分规则列表
+....
+GET /sail/point/right/acceleration
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_acceleration_conditions_get]]
+==== 加速条件列表
+....
+GET /sail/point/right/acceleration/conditions
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration/conditions
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_acceleration_id_post]]
+==== 更新加速积分规则
+....
+POST /sail/point/right/acceleration/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|加速积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_acceleration_id_delete]]
+==== 删除未启用的加速积分规则
+....
+DELETE /sail/point/right/acceleration/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|加速积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_acceleration_id_status_post]]
+==== 更改加速积分规则状态（启用/结束）
+....
+POST /sail/point/right/acceleration/{id}/status
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|加速积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/acceleration/0/status
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_8cc63ed642f87eb1de28beeb0a0ce496]]
+=== B端--基础积分规则
+
+[[_sail_point_right_base_post]]
+==== 新增基础积分规则
+....
+POST /sail/point/right/base
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/base
+----
+
+
+[[_sail_point_right_base_get]]
+==== 获取基础积分规则列表
+....
+GET /sail/point/right/base
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/base
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_base_id_post]]
+==== 更新基础积分规则
+....
+POST /sail/point/right/base/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|基础积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/base/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_base_id_delete]]
+==== 删除未启用的基础积分规则
+....
+DELETE /sail/point/right/base/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|基础积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/base/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_base_id_status_post]]
+==== 更改基础积分规则状态（启用/结束）
+....
+POST /sail/point/right/base/{id}/status
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|基础积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/base/0/status
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_c907ae62b6157b9c8f1dd41b75ef946b]]
+=== B端--抵现积分规则
+
+[[_sail_point_right_baseexchange_post]]
+==== 新增基础抵现积分规则
+....
+POST /sail/point/right/baseExchange
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/baseExchange
+----
+
+
+[[_sail_point_right_baseexchange_get]]
+==== 获取基础抵现积分规则
+....
+GET /sail/point/right/baseExchange
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/baseExchange
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_baseexchange_id_post]]
+==== 更新基础抵现积分规则
+....
+POST /sail/point/right/baseExchange/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|抵现积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/baseExchange/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_exchange_post]]
+==== 新增其他抵现积分规则
+....
+POST /sail/point/right/exchange
+....
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exchange
+----
+
+
+[[_sail_point_right_exchange_get]]
+==== 获取其他抵现积分规则列表
+....
+GET /sail/point/right/exchange
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exchange
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_exchange_id_post]]
+==== 更新其他抵现积分规则
+....
+POST /sail/point/right/exchange/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|抵现积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exchange/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_exchange_id_delete]]
+==== 删除未启用的抵现积分规则
+....
+DELETE /sail/point/right/exchange/{id}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|抵现积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exchange/0
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_sail_point_right_exchange_id_status_post]]
+==== 更改基础积分规则状态（启用/结束）
+....
+POST /sail/point/right/exchange/{id}/status
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**id** +
+__必填__|基础积分规则id|integer
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/right/exchange/0/status
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_37d8e019f586ff313cb0983e4c09c076]]
+=== B端--积分报表
+
+[[_sail_point_exceptions_get]]
+==== 积分异常报表
+....
+GET /sail/point/exceptions
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/exceptions
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_c2299a5120f349420a8494ba73c74701]]
+=== B端--积分有效期
+
+[[_8e0f2fcc8d11a68dac8e2a85b1aa84c9]]
+=== B端--积分流水
+
+[[_sail_point_flows_get]]
+==== 积分流水明细
+....
+GET /sail/point/flows
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/flows
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+[[_45842aa94ac15d40fba2c71ae6ecf90e]]
+=== B端--积分补录
+
+[[_74f37593866bb6df98b7a2ddc2e0b726]]
+=== B端--积分账户
+
+[[_sail_point_accounts_memberid_get]]
+==== 积分账户明细
+....
+GET /sail/point/accounts/{memberId}
+....
+
+
+===== 参数
+
+[options="header", cols=".^2,.^3,.^9,.^4"]
+|===
+|类型|名称|说明|类型
+|**Path**|**memberId** +
+__必填__|会员ID|string
+|**Query**|**orgcode** +
+__必填__|组织code|string
+|**Query**|**pageIndex** +
+__可选__|分页Index|string
+|**Query**|**pageSize** +
+__可选__|分页Size|string
+|**Query**|**tenantId** +
+__必填__|租户id|string
+|**Query**|**token** +
+__必填__|token|string
+|===
+
+
+===== 响应
+
+[options="header", cols=".^2,.^14,.^4"]
+|===
+|HTTP代码|说明|类型
+|**200**|OK|无内容
+|===
+
+
+===== HTTP请求示例
+
+====== 请求 path
+----
+/sail/point/accounts/string
+----
+
+
+====== 请求 query
+[source,json]
+----
+{
+  "orgcode" : "string",
+  "pageIndex" : "string",
+  "pageSize" : "string",
+  "tenantId" : "string",
+  "token" : "string"
+}
+----
+
+
+
+
+[[_definitions]]
+== 定义
+
+[[_commonresp]]
+=== CommonResp
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**_metadata** +
+__可选__|**样例** : `"<<_metadata>>"`|<<_metadata,MetaData>>
+|**data** +
+__可选__|数据内容 +
+**样例** : `"object"`|object
+|**message** +
+__可选__|状态信息 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|状态代码 0000为成功 +
+**样例** : `"string"`|string
+|===
+
+
+[[_getpointrightbasedata]]
+=== GetPointRightBaseData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**basicFormatCodes** +
+__可选__|业态代码 +
+**样例** : `[ "string" ]`|< string > array
+|**basicFormatNames** +
+__可选__|业态名称 +
+**样例** : `[ "string" ]`|< string > array
+|**comments** +
+__可选__|规则描述 +
+**样例** : `"string"`|string
+|**memberGradeCodes** +
+__可选__|会员等级编码 +
+**样例** : `[ "string" ]`|< string > array
+|**memberGradeNames** +
+__可选__|会员等级名称 +
+**样例** : `[ "string" ]`|< string > array
+|**orgCodes** +
+__可选__|适用范围(组织代码) +
+**样例** : `[ "string" ]`|< string > array
+|**orgNames** +
+__可选__|适用范围(组织名称) +
+**样例** : `[ "string" ]`|< string > array
+|**periodFrom** +
+__可选__|有效期开始时间 +
+**样例** : `"string"`|string (yyyy-MM-dd)
+|**periodTo** +
+__可选__|有效期开始时间 +
+**样例** : `"string"`|string (yyyy-MM-dd)
+|**periodType** +
+__可选__|**样例** : `"string"`|enum (长期, 周期)
+|**pointRightBaseMainNo** +
+__可选__|编号 +
+**样例** : `"string"`|string
+|**rule_name** +
+__可选__|规则名称 +
+**样例** : `"string"`|string
+|**status** +
+__可选__|规则状态 +
+**样例** : `"string"`|enum (未开始, 进行中, 已结束)
+|===
+
+
+[[_metadata]]
+=== MetaData
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|名称|说明|类型
+|**pageIndex** +
+__可选__|分页Index +
+**样例** : `0`|integer
+|**pageSize** +
+__可选__|分页Size +
+**样例** : `0`|integer
+|**totalCount** +
+__可选__|记录总数 +
+**样例** : `0`|integer
+|===
+
+
+
+
+

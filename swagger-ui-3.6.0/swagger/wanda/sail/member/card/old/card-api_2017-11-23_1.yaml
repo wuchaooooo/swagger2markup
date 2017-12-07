@@ -1,0 +1,651 @@
+swagger: '2.0'
+info:
+  contact:
+    email: wangwuchao3@wanda.cn
+    name: 王武超 ( 万信 wangwuchao3 )
+  title: 大会员
+  description: 大千帆大会员系统 - 1130 万达车城项目 - 会员卡相关API
+  version: '2017-11-23_1'
+host: localhost:10000
+tags:
+- name: 'B端--会员卡相关接口'
+  description: 'Member Card Facade Impl'
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /sail/member/cardLogs:
+    get:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员卡操作记录
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: mobileNo
+          in: query
+          description: 手机号
+          type: string
+          required: false
+        - name: cardNo
+          in: query
+          description: 会员卡号
+          type: string
+          required: false
+        - name: operationDateFrom
+          in: query
+          description: 最早操作日期 yyyy-MM-dd
+          type: string
+          required: false
+        - name: operationDateTo
+          in: query
+          description: 最晚操作日期 yyyy-MM-dd
+          type: string
+          required: false
+        - name: operationMethod
+          in: query
+          description: 操作方式 ( 0:绑定 1:解绑 2:冻结 3:解冻 )
+          type: integer
+          required: false
+        - name: cardTypeId
+          in: query
+          description: 会员卡类型id
+          type: integer
+          required: false
+        - name: operator
+          in: query
+          description: 操作人
+          type: string
+          required: false
+        - name: pageIndex
+          in: query
+          description: 分页位移
+          type: integer
+          required: false
+          default: 1
+        - name: pageSize
+          in: query
+          description: 分页大小
+          type: integer
+          required: false
+          default: 10
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetCardsLogsResp'
+  /sail/member/cardTypes:
+    get:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员卡类型列表
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: status
+          in: query
+          description: 会员卡类型状态 (0:未启用 1:已启用 2:全部)
+          type: integer
+          required: true
+        - name: pageIndex
+          in: query
+          description: 分页位移
+          type: integer
+          required: false
+        - name: pageSize
+          in: query
+          description: 分页大小
+          type: integer
+          required: false
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/GetCardTypesResp'
+    post:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员卡类型新增
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: postCardType
+          in: body
+          description: 会员卡类型
+          required: true
+          schema:
+            $ref: '#/definitions/PostCardTypeParam'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommonResp'
+  /sail/member/cardTypes/{id}:
+    post:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员卡类型修改
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: id
+          in: path
+          description: 会员卡类型id
+          type: integer
+          format: int64
+          required: true
+        - name: putCardType
+          in: body
+          description: 会员卡类型
+          required: true
+          schema:
+            $ref: '#/definitions/PutCardTypeParam'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommonResp'
+  /sail/member/cardTypes/{id}/status:
+    post:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员卡类型状态更新
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: id
+          in: path
+          description: 会员卡类型id
+          type: integer
+          format: int64
+          required: true
+        - name: status
+          in: body
+          description: 会员卡类型状态
+          required: true
+          schema:
+            $ref: '#/definitions/PostCardTypeStatusParam'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommonResp'
+  /sail/member/cards:
+    get:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员的会员卡查询
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: mobileNo
+          in: query
+          type: string
+          description: 会员手机号
+          required: false
+        - name: cardNo
+          in: query
+          type: string
+          description: 会员卡号
+          required: false
+        - name: memberId
+          in: query
+          type: integer
+          format: int64
+          description: 会员id
+          required: false
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GetCardResp'
+    post:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员的会员卡绑定
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: card
+          in: body
+          description: 会员的会员卡信息
+          schema:
+            $ref: '#/definitions/PostCardParam'
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommonResp'
+  /sail/member/cards/{id}/status:
+    post:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 会员的会员卡状态更新
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: id
+          in: path
+          description: 会员的会员卡id
+          type: integer
+          format: int64
+          required: true
+        - name: status
+          in: body
+          description: 会员的会员卡状态
+          required: true
+          schema:
+            $ref: '#/definitions/PostCardStatusParam'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/CommonResp'
+  /sail/member/cardTypes/{id}/latestCardNo:
+    get:
+      tags:
+        - "B端--会员卡相关接口"
+      summary: 获取指定会员卡（虚拟卡）类型的最新生成卡号
+      parameters:
+        - name: token
+          in: header
+          description: 用户认证的token
+          type: string
+          required: true
+        - name: tenantId
+          in: header
+          description: 租户id
+          type: string
+          required: true
+        - name: orgcode
+          in: header
+          description: 组织代码
+          type: string
+          required: true
+        - name: id
+          in: path
+          description: 会员卡类型id
+          type: integer
+          format: int64
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/GetCardTypeLatestCardNoResp'
+definitions:
+  MetaData:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        format: int64
+        description: 记录总数
+      pageIndex:
+        type: integer
+        description: 分页Index
+      pageSize:
+        type: integer
+        description: 分页Size
+  GetCardLogData:
+    type: object
+    properties:
+      operationDate:
+        type: string
+        format: yyyy-MM-dd HH:mm:ss
+        description: 操作时间
+      operator:
+        type: string
+        description: 操作人
+      operationMethod:
+        type: integer
+        description: 操作方式 ( 0:绑定 1:解绑 2:冻结 3:解冻 )
+      cardName:
+        type: string
+        description: 会员卡名称
+      cardNo:
+        type: string
+        description: 会员卡号
+      mobileNo:
+        type: string
+        description: 手机号
+      plazaName:
+        type: string
+        description: 广场名字
+  GetCardsLogsResp:
+    type: object
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/GetCardLogData'
+      _metadata:
+        $ref: '#/definitions/MetaData'
+  GetCardTypeData:
+    type: object
+    properties:
+      id:
+        type: string
+        description: 会员卡类型id
+      kind:
+        type: integer
+        description: 会员卡种类 0:虚拟卡 1:实体卡
+      name:
+        type: string
+        description: 会员卡名称
+      description:
+        type: string
+        description: 会员卡描述
+      plazaId:
+        type: string
+        description: 所属广场id
+      plazaName:
+        type: string
+        description: 所属广场名称
+      createUserName:
+        type: string
+        description: 创建人姓名
+      createUserId:
+        type: string
+        description: 创建人id
+      createTime:
+        type: string
+        format: yyyy-MM-dd HH:mm:ss
+        description: 创建时间
+      updateUserName:
+        type: string
+        description: 修改人姓名
+      updateUserId:
+        type: string
+        description: 修改人id
+      updateTime:
+        type: string
+        format: yyyy-MM-dd HH:mm:ss
+        description: 修改时间
+      tenantId:
+        type: integer
+        format: int64
+        description: 租户id
+      status:
+        type: integer
+        description: 状态 (0:未启用 1:已启用 -1:删除)
+      frozenRule:
+        type: integer
+        description: 无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年)
+      thawRule:
+        type: integer
+        description: 卡解冻规则 (0:无 1:消费自动解冻)
+  GetCardTypesResp:
+    type: object
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/GetCardTypeData'
+      _metadata:
+        $ref: '#/definitions/MetaData'
+  PostCardTypeParam:
+    type: object
+    properties:
+      cardKind:
+        type: integer
+        description: 会员卡种类 (0:虚拟卡 1:实体卡)
+      cardName:
+        type: string
+        description: 会员卡名称
+      cardDesc:
+        type: string
+        description: 会员卡说明
+      frozenRule:
+        type: integer
+        description: 无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年)
+      thawRule:
+        type: integer
+        description: 卡解冻规则 (0:无 1:消费自动解冻)
+  PutCardTypeParam:
+    type: object
+    properties:
+      cardDesc:
+        type: string
+        description: 会员卡说明
+      frozenRule:
+        type: integer
+        description: 无消费卡冻结规则 (0:无 1:三个月 2:六个月 3:一年 4:两年)
+      thawRule:
+        type: integer
+        description: 卡解冻规则 (0:无 1:消费自动解冻)
+  GetCardData:
+    type: object
+    properties:
+      id:
+        type: string
+        description: 会员的会员卡id
+      memberId:
+        type: string
+        description: 会员id
+      cardKind:
+        type: integer
+        description: 卡种类 0:虚拟卡 1:实体卡
+      cardName:
+        type: string
+        description: 会员卡名称
+      cardNo:
+        type: string
+        description: 会员卡号
+      status:
+        type: integer
+        description: 卡状态 (0:未绑定 1:已绑定 2:冻结)
+      memberName:
+        type: string
+        description: 会员姓名
+      mobileNo:
+        type: string
+        description: 手机号
+      certificateType:
+        type: string
+        description: 证件类型
+      certificateCode:
+        type: string
+        description: 证件号码
+      registrationDateTime:
+        type: string
+        description: 注册会员时间
+      registrationPlazaName:
+        type: string
+        description: 注册会员来源广场
+  GetCardResp:
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        $ref: '#/definitions/GetCardData'
+      _metadata:
+        $ref: '#/definitions/MetaData'
+  CommonResp:
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        type: object
+        description: 数据内容
+      _metadata:
+        $ref: '#/definitions/MetaData'
+  GetCardTypeLatestCardNoData:
+    type: object
+    properties:
+      cardTypeId:
+        type: string
+        description: 会员卡类型id
+      latestCardNo:
+        type: string
+        description: 最新的卡号
+  GetCardTypeLatestCardNoResp:
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        $ref: '#/definitions/GetCardTypeLatestCardNoData'
+      _metadata:
+        $ref: '#/definitions/MetaData'
+  PostCardParam:
+    type: object
+    required:
+      - cardId
+      - cardNo
+      - memberId
+    properties:
+      cardId:
+        type: integer
+        format: int64
+        description: 会员卡类型id
+      cardNo:
+        type: string
+        description: 会员的会员卡号
+      memberId:
+        type: integer
+        format: int64
+        description: 会员id
+  PostCardTypeStatusParam:
+    required:
+      - status
+    properties:
+      status:
+        type: integer
+        description: 会员卡类型状态 ( 1:启用 2:删除 )
+  PostCardStatusParam:
+    required:
+      - status
+    properties:
+      status:
+        type: integer
+        description: 会员的会员卡状态 ( 0:销卡 1:解冻 2:冻结 )

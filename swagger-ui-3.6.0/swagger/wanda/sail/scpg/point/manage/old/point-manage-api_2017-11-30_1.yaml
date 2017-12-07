@@ -1,0 +1,108 @@
+swagger: '2.0'
+info:
+  contact:
+    email: wangwuchao3@gmail.com
+    name: 王武超
+  title: 大会员
+  description: 大千帆大会员系统 - 印力集团项目 - 积分管理相关API
+  version: '2017-11-30_1'
+host: localhost:10000
+tags:
+- name: 'B端--积分规则相关接口'
+  description: ''
+- name: 'B端--积分有效期相关接口'
+  description: ''
+- name: 'B端--积分补录相关接口'
+  description: ''
+schemes:
+  - http
+produces:
+  - application/json
+paths:
+  /sail/point/right/base:
+    get:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 获取基础积分规则列表
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 新增基础积分规则
+      responses:
+        200:
+          description: OK
+  /sail/point/right/acceleration:
+    get:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 获取加速积分规则列表
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 新增加速积分规则
+      responses:
+        200:
+          description: OK
+  /sail/point/right/exception:
+    get:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 获取例外积分规则列表
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 新增例外积分规则
+      responses:
+        200:
+          description: OK
+  /sail/point/right/exchange:
+    get:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 获取抵现积分规则列表
+      responses:
+        200:
+          description: OK
+    post:
+      tags:
+        - 'B端--积分规则相关接口'
+      summary: 新增抵现积分规则
+      responses:
+        200:
+          description: OK
+definitions:
+  MetaData:
+    type: object
+    properties:
+      totalCount:
+        type: integer
+        format: int64
+        description: 记录总数
+      pageIndex:
+        type: integer
+        description: 分页Index
+      pageSize:
+        type: integer
+        description: 分页Size
+  CommonResp:
+    properties:
+      status:
+        type: string
+        description: 状态代码 0000为成功
+      message:
+        type: string
+        description: 状态信息
+      data:
+        type: object
+        description: 数据内容
+      _metadata:
+        $ref: '#/definitions/MetaData'

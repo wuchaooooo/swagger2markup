@@ -1,0 +1,14 @@
+package com.wuchaooooo.service.swagger2markup;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class Swagger2markupApplication {
+
+	public static void main(String[] args) {
+		SpringApplication springApplication = new SpringApplication();
+		springApplication.setWebEnvironment(false);
+		springApplication.run(Swagger2markupApplication.class, args);
+	}
+}
