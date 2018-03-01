@@ -26,3 +26,5 @@ nbdist/
 ### Personal
 #asciidoc/*
 #htmldoc/**
+swagger-ui-3.6.0/swagger/*
+!swagger-ui-3.6.0/swagger/swagger-2.0-example.yaml
